@@ -27,7 +27,7 @@ public class Main {
 		//String cognome="Giardina";
 		String cognome ="Alessio ora ci crede!!!!' OR '1=1";
 
-		//prova
+		//io invece qui
 		
 		
 		StudenteDaoITF studenteDao=null;
