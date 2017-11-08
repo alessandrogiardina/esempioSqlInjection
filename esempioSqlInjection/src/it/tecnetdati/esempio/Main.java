@@ -28,7 +28,7 @@ public class Main {
 		String cognome ="Alessio ora ci crede!!!!' OR '1=1";
 
 		//io invece qui
-		
+		ciao
 		
 		StudenteDaoITF studenteDao=null;
 		try 
