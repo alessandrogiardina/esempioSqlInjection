@@ -32,8 +32,8 @@ public class Main {
 		StudenteDaoITF studenteDao=null;
 		try 
 		{
-			//studenteDao = new StudenteDao();
-			studenteDao = new StudenteDaoConPreparedStatement();
+			studenteDao = new StudenteDao();
+			//studenteDao = new StudenteDaoConPreparedStatement();
 			
 			ArrayList<Studente> result = studenteDao.ricercaStudentePerCognome(cognome);
 				
