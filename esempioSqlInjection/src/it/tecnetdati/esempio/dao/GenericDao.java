@@ -1,12 +1,18 @@
 package it.tecnetdati.esempio.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
 import it.tecnetdati.esempio.exception.DaoException;
+import it.tecnetdati.esempio.properties.PropertyFileLoader;
+import it.tecnetdati.esempio.properties.PropertyFileLoaderITF;
+import it.tecnetdati.esempio.util.Costanti;
 
 
 public class GenericDao 
@@ -22,7 +28,8 @@ public class GenericDao
 		{
 			throw new DaoException("Errore Driver Mysql",e);
 		}
-			
+		
+		
 	}
 	
 	protected void closeResult(ResultSet rs) throws SQLException 
@@ -54,9 +61,27 @@ public class GenericDao
 	
 	protected Connection getConnection() throws DaoException 
 	{
-		String url = "jdbc:mysql://localhost:3306/db_esempio_sql_injection";
-		String user = "esempio";
-		String password = "esempio";
+		PropertyFileLoaderITF propertyFileLoader = new PropertyFileLoader();
+		
+		String user=null;
+		String password=null;
+		String url=null;
+		try 
+		{
+			Properties properties = propertyFileLoader.getPropertyFile();
+			
+			
+			user = (String) properties.get(Costanti.USER);
+			password = (String) properties.get(Costanti.PASSWORD);
+			url = (String) properties.get(Costanti.URL);
+			
+		} 
+		catch (IOException e) 
+		{
+			throw new DaoException("Errore reperimento file di properties",e);
+		}
+		
+		
 		
 		Connection connection = null;
 		try 
@@ -70,6 +95,8 @@ public class GenericDao
 		return connection;
 
 	}
+	
+	
 	
 
 }
